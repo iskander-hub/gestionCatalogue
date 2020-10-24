@@ -24,7 +24,7 @@ public class ProduitController {
 	@Autowired
 	private ProduitRepository produitRepository;
 	
-	@RequestMapping(value="/user/index")
+	@RequestMapping(value="/index")
 	public String index(Model model,
 			@RequestParam (name="page",defaultValue = "0")int p,
 			@RequestParam (name="size",defaultValue = "5")int s,
@@ -40,24 +40,24 @@ public class ProduitController {
 		
 		return "produits";
 	}
-	@RequestMapping(value="/admin/delete",method=RequestMethod.GET)
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String delete(Long id, String mc, int page, int size) {
 		produitRepository.deleteById(id);
-		return "redirect:/user/index?page="+page+"&size="+size+"&mc="+mc;
+		return "redirect:/index?page="+page+"&size="+size+"&mc="+mc;
 	}
 	
-	@RequestMapping(value="/admin/form",method = RequestMethod.GET)
+	@RequestMapping(value="/form",method = RequestMethod.GET)
 	public String formProduit(Model model) {
 		model.addAttribute("produit",new Produit());
 		return "formProduit";
 	}
-	@RequestMapping(value="/admin/edit",method = RequestMethod.GET)
+	@RequestMapping(value="/edit",method = RequestMethod.GET)
 	public String editProduit(Model model,Long id) {
 		Produit p = produitRepository.getOne(id);
 		model.addAttribute("produit",p);
 		return "editProduit";
 	}
-	@RequestMapping(value="/admin/save",method = RequestMethod.POST)
+	@RequestMapping(value="/save",method = RequestMethod.POST)
 	public String save(Model model, @Valid Produit produit, BindingResult bindingResult) {
 		if(bindingResult.hasErrors())
 			return "formProduit";
@@ -66,7 +66,7 @@ public class ProduitController {
 	}
 	@RequestMapping(value="/",method = RequestMethod.GET)	
 	public String home() {
-		return "redirect:/user/index";
+		return "redirect:/index";
 	}
 	@RequestMapping(value="/403",method = RequestMethod.GET)	
 	public String accessDnied() {

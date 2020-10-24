@@ -13,7 +13,7 @@ th:href="@{css/bootstrap.min.css}"/>
 <p></p>
 <div layout:fragment="content">
 <div class="container">
-<form th:action="@{user/index}" method="get">
+<form th:action="@{/index}" method="get">
 <label>Mot Clé:</label>
 <input type="text" name="mc" th:value="${mc}"/>
 <button class="btn btn-primary">Chercher</button>
@@ -33,8 +33,8 @@ th:href="@{css/bootstrap.min.css}"/>
   <td th:text="${p.designation}"></td>
    <td th:text="${p.prix}"></td>
     <td th:text="${p.quantite}"></td>
-     <td><a th:href="@{/admin/edit(id=${p.id})}">Edit</a></td>
-    <td><a onclick="return confirm('Etes vous sure de supprimer?')" th:href="@{/admin/delete(id=${p.id},page=${pageCourante},size=${size},mc=${mc})}">Delete</a></td>
+     <td><a th:href="@{/edit(id=${p.id})}">Edit</a></td>
+    <td><a onclick="return confirm('Etes vous sure de supprimer?')" th:href="@{/delete(id=${p.id},page=${pageCourante},size=${size},mc=${mc})}">Delete</a></td>
  
 </tr>
 </tbody>
@@ -43,7 +43,7 @@ th:href="@{css/bootstrap.min.css}"/>
 <div class="container">
 <ul class="nav nav-pills" >
 <li th:class="${pageCourante}==${status.index}?'active':''" th:each="page,status:${pages}" >
-<a th:href="@{/user/index(page=${status.index},size=${size},mc=${mc})}" th:text="${status.index}"></a>
+<a th:href="@{/index(page=${status.index},size=${size},mc=${mc})}" th:text="${status.index}"></a>
 </li>
 </ul>
 </div>
